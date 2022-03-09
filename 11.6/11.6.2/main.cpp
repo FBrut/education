@@ -1,3 +1,5 @@
+//Проверка корректности email-адреса
+
 #include <iostream>
 
 int symbolCommercialAt(std::string str);
