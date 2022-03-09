@@ -1,3 +1,5 @@
+//Шифр цезаря.
+
 #include <iostream>
 std::string encrypt_caesar(std::string, std::string, int);
 std::string decrypt_caesar(std::string, std::string, int);
