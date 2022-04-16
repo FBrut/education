@@ -99,7 +99,7 @@ int main() {
     std::cout << "enter the IP address: " << std::endl;
     std::getline(std::cin, adrIP);
 
-    std::cout << (check_IP(adrIP) ? "Yes" : "No") << std::endl;
+    std::cout << (check_IP(adrIP) ? "Valid" : "Invalid") << std::endl;
 
     return 0;
 }
