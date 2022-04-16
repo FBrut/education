@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-//проверка написания IP адреса
-=======
-//РїСЂРѕРІРµСЂРєР° РЅР°РїРёСЃР°РЅРёСЏ IP Р°РґСЂРµСЃР°
->>>>>>> 611d1d0f115a071b6a0b49598c5dfafbad1ab4a0
-
 #include <iostream>
 #include <string>
 #include <sstream>
