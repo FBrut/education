@@ -1,3 +1,5 @@
+//проверка написания IP адреса
+
 #include <iostream>
 #include <string>
 #include <sstream>
