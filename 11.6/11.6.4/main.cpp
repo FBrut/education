@@ -1,3 +1,5 @@
+//крестики-нолики, проверка записи игры
+//
 #include <iostream>
 
 bool check_symbol(std::string str);
