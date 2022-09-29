@@ -11,15 +11,13 @@ bool check_symbol(std::string str)
         return false;
     }
 
-    bool a = false;
     for (int i = 0; i < str.length(); ++i) {
         if (str[i] == 'X' || str[i] == 'O' || str[i] == '.') {
-            a = true;
+            return true;
         } else {
             return false;
         }
     }
-    return a;
 }
 
 
