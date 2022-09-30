@@ -10,6 +10,7 @@
 +bool check_IP(std::string);
 std::string get_address_part(std::string, int);
 int digit(std::string);
+bool check_zero(std::string str);
 bool check_symbol_IP(std::string str);
 
 bool check_symbol_IP(std::string str)
@@ -20,6 +21,17 @@ bool check_symbol_IP(std::string str)
         if (!(str[i] >= '0' && str[i] <= '9') && str[i] != '.') return false;
     }
     return true;
+}
+
+int digit(std::string str)
+{
+    int counter = 1;
+    int nmbr = 0;
+    for (int i = str.length() - 1; i >= 0; i--) {
+        nmbr += (str[i] - '0') * counter;
+        counter *= 10;
+    }
+    return nmbr;
 }
 
 bool check_zero(std::string str)
