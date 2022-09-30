@@ -23,7 +23,7 @@ bool check_symbol(std::string str)
 
 char check_row(std::string str)
 {
-    char ch;
+    char ch = '.';
     if (str[0] == 'X' && str[1] == 'X' && str[2] == 'X') {
         ch = 'X';
     }
@@ -48,7 +48,6 @@ int main() {
 
     if (check_symbol(concatenated_string)) {
         int x = 0, o = 0, dot = 0;
-        int counter = 0;
         std::string winn = "";
         char ch;
 
@@ -62,10 +61,9 @@ int main() {
             }
         }
 
-
         if((x + o) < dot){
             std::cout << "\nNobody\n";
-        } else while (counter < 1) {
+        } else 
                 //Строки
                 for (int i = 0; i < 7; i += 3) {
                     std::string str = "";
@@ -112,7 +110,7 @@ int main() {
                     winn += ch;
                 }
 
-                if ((winn != "X" && winn != "O") && dot == 0 ) {
+                if ((winn != "X" || winn != "O") && dot == 0 ) {
                     std::cout << "Nobody";
                 } else if (winn == "X" && o == x - 1) {
                     std::cout << "Petya won";
@@ -122,7 +120,6 @@ int main() {
                     std::cout << "Incorrect!!!";
                 }
 
-                counter = 1;
             }
     } else {
         std::cout << "Incorrect!!!";
