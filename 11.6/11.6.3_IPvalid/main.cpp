@@ -1,40 +1,30 @@
 // Валидация IP-адреса
 //
+// Пользователь вводит строку, задающую IP-адрес через стандартный ввод.
+// В результате программа должна вывести слово Valid, если адрес корректен,
+// и слово Invalid, если это не так.
+
 #include <iostream>
 #include <string>
 
++bool check_IP(std::string);
+std::string get_address_part(std::string, int);
+int digit(std::string);
+bool check_symbol_IP(std::string str);
 
-bool get_address_part(std::string str, int n);
-int digit(std::string str);
-bool check_zero(std::string str);
-bool check_IP(std::string str);
-bool check_dot_IP(std::string str);
-bool check_number(std::string str);
-
-int digit(std::string str)
-{
-    int counter = 1;
-    int nmbr = 0;
-    for (int i = str.length() - 1; i >= 0; i--) {
-        nmbr += (str[i] - '0') * counter;
-        counter *= 10;
-    }
-    return nmbr;
-}
-
-bool check_dot_IP(std::string str)
+bool check_symbol_IP(std::string str)
 {
     if (str[0] == '.' || str[str.length() - 1] == '.') return false;
     for (int i = 0; i < str.length(); i++) {
         if (str[i] == '.' && str[i + 1] == '.') return false;
-        if (str[i] > '9') return false;
+        if (!(str[i] >= '0' && str[i] <= '9') && str[i] != '.') return false;
     }
     return true;
 }
 
 bool check_zero(std::string str)
 {
-    if (str.size() > 1)
+    if (str.size() >= 2)
     {
         if (str[0] == '0' && str[0 + 1] >= '0') return false;
     }
@@ -42,55 +32,41 @@ bool check_zero(std::string str)
     return true;
 }
 
-/*
-bool check_number(int n)
+std::string get_address_part(std::string str, int okt)
 {
-    int number = n;
-    std::cout << "number = " << number << std::endl;
-    if (number > 255) return false;
+    std::string str_d;
+    int counter = okt;
+    int n = 0;
 
-}
-*/
-
-bool get_address_part(std::string str)
-{
-    std::string num;
-    int number;
-    for (int i = 0; i < str.length(); i++) {
-        if (str[i] != '.') {
-            num += str[i];
-        }
-        else
-        if (str[i] == '.') {
-            if (check_zero(num)) {
-                number = digit(num);
-            } else return false;
-            //check_number(number);
-            if (number > 255 ) {
-                return false;
+    for (int j = 0; j < str.length(); ++j) {
+        if (!(str[j] == '.' || str[j] == str.length())) {
+            str_d += str[j];
+        } else if (str[j] == '.') {
+            n += 1;
+            if (counter == n) {
+                n = 0;
+                return str_d;
             }
-            num = "";
-        }
-        if (i + 1 == str.length()) {
-            if (check_zero(num)) {
-            }
-            else return false;
-            number = digit(num);
-            //check_number(number);
-            if (number > 255) {
-                return false;
-            }
-            num = "";
+            str_d = "";
         }
     }
     return true;
 }
 
-
 bool check_IP(std::string str)
 {
-    if (!check_dot_IP(str)) return false;
-    if (!get_address_part(str)) return false;
+    if (!check_symbol_IP(str)) return false;
+    std::string str_dig;
+    for (int i = 0; i < 4; ++i) {
+        int okt = i + 1;
+        str_dig = get_address_part(str, okt);
+
+        if (check_zero(str_dig)) {
+            int n = digit(str_dig);
+            if (n < 0 || n > 255) return false;
+        } else return false;
+    }
+
     return true;
 }
 
