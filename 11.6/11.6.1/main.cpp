@@ -1,37 +1,41 @@
 //Шифр цезаря.
 
 #include <iostream>
+#include <iostream>
+
 std::string encrypt_caesar(std::string, int);
 std::string decrypt_caesar(std::string, int);
 
 std::string encrypt_caesar(std::string str, int key)
 {
-    key = (key % 26);
+    if(abs(key) > 26) {
+        key = (key % 26);
+    }
+
     if (key < 0) {
         for (int i = 0; i < str.length(); ++i) {
             if (str[i] >= 'A' && str[i] <= 'Z') {
-                if (str[i + 1] == 'A') {
-                    str[i] = 'Z';
-                }
-                str[i] = str[i] + key;
+                if ((str[i] + key) < 'A') {
+                    str[i] = 'Z' + (key + (str[i] - 'A' + 1));
+                } else str[i] = str[i] + key;
             } else if (str[i] >= 'a' && str[i] <= 'z') {
-                key = (key % 26);
-                str[i] = str[i] + key;
+                if ((str[i] + key) < 'a') {
+                    str[i] = 'z' + (key + (str[i] - 'a' + 1));
+                } else str[i] = str[i] + key;
             }
-            if(str[i] == ' ') {
-                str[i] = ' ';
+        }    
+    }        
+    if (key > 0) {
+        for (int i = 0; i < str.length(); ++i) {
+            if (str[i] >= 'A' && str[i] <= 'Z') {
+                if ((str[i] + key) > 'Z') {
+                    str[i] = 'A' + (key - ('Z' - str[i] + 1));
+                } else str[i] = str[i] + key;
+            } else if (str[i] >= 'a' && str[i] <= 'z') {
+                if ((str[i] + key) > 'z') {
+                    str[i] = 'a' + (key - ('z' - str[i] + 1));
+                } else str[i] = str[i] + key;
             }
-        }
-    }
-    for (int i = 0; i < str.length(); ++i) {
-
-        if (str[i] >= 'A' && str[i] <= 'Z') {
-            str[i] = str[i] + key;
-        } else if (str[i] >= 'a' && str[i] <= 'z') {
-            str[i] = str[i] + key;
-        }
-        if(str[i] == ' ') {
-            str[i] = ' ';
         }
     }
     return str;
