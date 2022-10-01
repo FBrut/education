@@ -7,7 +7,7 @@
 #include <iostream>
 #include <string>
 
-+bool check_IP(std::string);
+bool check_IP(std::string);
 std::string get_address_part(std::string, int);
 int digit(std::string);
 bool check_zero(std::string str);
@@ -27,7 +27,7 @@ int digit(std::string str)
 {
     int counter = 1;
     int nmbr = 0;
-    for (int i = str.length() - 1; i >= 0; i--) {
+    for (int i = str.length() - 1; i >= 0; --i) {
         nmbr += (str[i] - '0') * counter;
         counter *= 10;
     }
@@ -62,7 +62,6 @@ std::string get_address_part(std::string str, int okt)
             str_d = "";
         }
     }
-    return true;
 }
 
 bool check_IP(std::string str)
