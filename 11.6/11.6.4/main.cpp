@@ -30,7 +30,6 @@ char check_row(std::string str)
     if (str[0] == 'O' && str[1] == 'O' && str[2] == 'O') {
         ch = 'O';
     }
-
     return ch;
 }
 
@@ -42,9 +41,7 @@ int main() {
     std::cin >> str2;
     std::cin >> str3;
 
-    std::string  winn_diagonal_R, winn_diagonal_L, column1, column2, column3;
     std::string concatenated_string = str1 + str2 + str3;
-
 
     if (check_symbol(concatenated_string)) {
         int x = 0, o = 0, dot = 0;
@@ -75,7 +72,6 @@ int main() {
                     if (ch == 'X' || ch == 'O'){
                         winn += ch;
                     }
-
                 }
                 //Колонки
                 for (int i = 0; i < 3; ++i) {
@@ -119,11 +115,9 @@ int main() {
                 }  else {
                     std::cout << "Incorrect!!!";
                 }
-
-            }
-    } else {
-        std::cout << "Incorrect!!!";
-    }
-    return 0;
+            } 
+            else {std::cout << "Incorrect!!!";
+        }
+        return 0;
 }
 
