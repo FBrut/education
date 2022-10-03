@@ -108,6 +108,8 @@ int main() {
 
                 if ((winn != "X" || winn != "O") && dot == 0 ) {
                     std::cout << "Nobody";
+                } else if (((winn != "X" || winn != "O") && dot > 0 )) {
+                    std::cout << "Nobody";
                 } else if (winn == "X" && o == x - 1) {
                     std::cout << "Petya won";
                 } else if (winn == "O" && x == o) {
